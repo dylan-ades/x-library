@@ -6,15 +6,27 @@ from django.contrib.auth.forms import UserCreationForm
 
 from .models import Workout
 
+# Add the Workout class & list and view function below the imports
+class Horse:  # Note that parens are optional if not inheriting from another class
+    def __init__(type, description):
+        self.type = type
+        self.description = description
+    
 
-
-
+workouts = [
+  Workout('Cardio', 'My goal is to do a 6 minute mile today'),
+  Workout('Yoga', 'May Goal is to loosen my back'),
+  Workout('Strength', 'My goal is to add 10lbs to my lift'),
+]
 
 
 
 def index(request):
     return render(request, 'main_app/index.html')
 
+def workouts_index(request):
+#   workouts = Workout.objects.all()
+  return render(request, 'workouts/index.html', { 'workouts': workouts })
 
 # def about(request):
 #   return render(request, 'about.html')
@@ -39,6 +51,3 @@ def signup(request):
   return render(request, 'registration/signup.html', context)
 
 
-def workouts_index(request):
-  workoutss = Workout.objects.all()
-  return render(request, 'workouts/index.html', { 'workouts': workouts })

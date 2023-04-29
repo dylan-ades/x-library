@@ -18,8 +18,13 @@ class Workout(models.Model):
         max_length=1,
     # add the 'choices' field option
         choices=TYPE,
-    # set the default value for meal to be 'B'
+    # set the default value for workout to be 'C'
         default=TYPE[0][0]
-    )
+    ),
     description = models.TextField(max_length=250)
+
+    # new code below
+    def __str__(self):
+        return self.name
+        # return f'the horses name is {self.name}'
     
