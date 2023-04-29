@@ -2,7 +2,15 @@ from django.shortcuts import render
 from django.contrib.auth import login
 # register/signin form
 from django.contrib.auth.forms import UserCreationForm
-# Create your views here.
+
+
+from .models import Workout
+
+
+
+
+
+
 
 def index(request):
     return render(request, 'main_app/index.html')
@@ -29,3 +37,8 @@ def signup(request):
   form = UserCreationForm()
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
+
+
+def workouts_index(request):
+  workoutss = Workout.objects.all()
+  return render(request, 'workouts/index.html', { 'workouts': workouts })
