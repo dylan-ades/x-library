@@ -1,3 +1,4 @@
+
 from django.shortcuts import render
 from django.contrib.auth import login
 # register/signin form
@@ -14,8 +15,8 @@ TYPE = (
 )
 
 # Add the Workout class & list and view function below the imports
-class Horse:  # Note that parens are optional if not inheriting from another class
-    def __init__(type, description):
+class Workout:  # Note that parens are optional if not inheriting from another class
+    def __init__(self, type, description):
         self.type = type
         self.description = description
     
@@ -56,5 +57,6 @@ def signup(request):
   form = UserCreationForm()
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
+
 
 
