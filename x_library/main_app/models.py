@@ -5,26 +5,14 @@ from datetime import date
 from django.contrib.auth.models import User
 
 # A tuple of 2-tuples
-TYPE = (
-    ('C', 'Cardio'),
-    ('Y', 'Yoga'),
-    ('S', 'Strength')
-)
+# TYPE = (
+#     ('C', 'Cardio'),
+#     ('Y', 'Yoga'),
+#     ('S', 'Strength')
+# )
 
-
-# Create your models here.
 class Workout(models.Model):
-    type = models.CharField(
-        max_length=1,
-    # add the 'choices' field option
-        choices=TYPE,
-    # set the default value for workout to be 'C'
-        default=TYPE[0][0]
-    ),
+    workout_type = models.TextField(max_length=150, default='Workout')
     description = models.TextField(max_length=250)
 
-    # new code below
-    def __str__(self):
-        return self.name
-        # return f'the horses name is {self.name}'
     

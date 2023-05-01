@@ -85,9 +85,9 @@ WSGI_APPLICATION = 'x_library.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'GKFitz/x_library',
+        'NAME': 'GKFitz/x_library4',
         'USER': 'GKFitz',
-        'PASSWORD': 'v2_43adc_Dbc8rKbszHTZAe5DjCnNkWV',
+        'PASSWORD': 'v2_43ggZ_CZepqWykhN9Jw44PD6PVKwZ',
         'HOST': 'db.bit.io',
         'PORT': '5432',
     }
