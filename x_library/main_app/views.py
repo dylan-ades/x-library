@@ -8,32 +8,32 @@ from django.contrib.auth.forms import UserCreationForm
 from .models import Workout
 
 # A tuple of 2-tuples
-TYPE = (
-    ('C', 'Cardio'),
-    ('Y', 'Yoga'),
-    ('S', 'Strength')
-)
+# TYPE = (
+#     ('C', 'Cardio'),
+#     ('Y', 'Yoga'),
+#     ('S', 'Strength')
+# )
 
 # Add the Workout class & list and view function below the imports
-class Workout:  # Note that parens are optional if not inheriting from another class
-    def __init__(self, type, description):
-        self.type = type
-        self.description = description
+# class Workout:  # Note that parens are optional if not inheriting from another class
+#     def __init__(self, type, description):
+#         self.type = type
+#         self.description = description
     
 
-workouts = [
-  Workout('C', 'My goal is to do a 6 minute mile today'),
-  Workout('Y', 'May Goal is to loosen my back'),
-  Workout('S', 'My goal is to add 10lbs to my lift'),
-]
+# workouts = [
+#   Workout('C', 'My goal is to do a 6 minute mile today'),
+#   Workout('Y', 'May Goal is to loosen my back'),
+#   Workout('S', 'My goal is to add 10lbs to my lift'),
+# ]
 
 
 
 def index(request):
-    return render(request, 'main_app/index.html')
+  return render(request, 'main_app/index.html')
 
 def workouts_index(request):
-#   workouts = Workout.objects.all()
+  workouts = Workout.objects.all()
   return render(request, 'workouts/index.html', { 'workouts': workouts })
 
 # def about(request):
