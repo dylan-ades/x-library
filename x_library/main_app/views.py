@@ -39,6 +39,17 @@ def workouts_index(request):
 # def about(request):
 #   return render(request, 'about.html')
 
+
+# The purpose of this is to add a specific exercise 
+def add_exercise(request, workout_id, exercise_id):
+  Workout.objects.get(id=workout_id).exercises.add(exercise_id)
+  return redirect('detail', workout_id=workout_id)
+
+# The purpose of this is to remove a specific exercise 
+def remove_exercise(request, workout_id, exercise_id):
+  Workout.objects.get(id=workout_id).exercises.remove(exercise_id)
+  return redirect('detail', workout_id=workout_id)
+
 def signup(request):
   error_message = ''
   if request.method == 'POST':
