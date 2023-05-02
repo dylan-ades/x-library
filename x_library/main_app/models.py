@@ -15,4 +15,5 @@ class Workout(models.Model):
     workout_type = models.TextField(max_length=150, default='Workout')
     description = models.TextField(max_length=250)
 
-    
+    def __str__(self):
+        return self.workout_type
