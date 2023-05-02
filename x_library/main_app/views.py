@@ -1,5 +1,5 @@
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth import login
 # register/signin form
 from django.contrib.auth.forms import UserCreationForm
@@ -33,7 +33,8 @@ def index(request):
   return render(request, 'main_app/index.html')
 
 def workouts_index(request):
-  workouts = Workout.objects.all()
+  workouts = Workout.objects.filter(user=request.user)
+  # workouts = Workout.objects.all()
   return render(request, 'workouts/index.html', { 'workouts': workouts })
 
 # def about(request):

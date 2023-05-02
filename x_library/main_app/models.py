@@ -14,5 +14,8 @@ from django.contrib.auth.models import User
 class Workout(models.Model):
     workout_type = models.TextField(max_length=150, default='Workout')
     description = models.TextField(max_length=250)
+    # Add the foreign key linking to a user instance
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
-    
+    def __str__(self):
+        return self.workout_type
