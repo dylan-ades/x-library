@@ -17,8 +17,23 @@ class Workout(models.Model):
     # Add the foreign key linking to a user instance
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
+    # new code below
     def __str__(self):
-        return self.workout_type
+        return self.name
+        # return f'the horses name is {self.name}'
     
     def get_absolute_url(self):
         return reverse('detail', kwargs={'workout_id': self.id})
+    
+class Exercises(models.Model):
+     name = models.CharField(max_length=100)
+     sets = models.IntegerField()
+     reps = models.IntegerField()
+     distance = models.IntegerField()
+     yoga_flow = models.IntegerField()
+
+     def __str__(self):
+        return f'{self.name}'
+    
+     def get_absolute_url(self):
+        return reverse('exercises_detail', kwargs={'pk': self.id})

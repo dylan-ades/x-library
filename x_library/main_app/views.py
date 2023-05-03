@@ -1,13 +1,14 @@
 
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
+
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.http import HttpResponse
+from django.views.generic import ListView, DetailView
 # register/signin form
 from django.contrib.auth.forms import UserCreationForm
 
 
-from .models import Workout
+from .models import Workout, Exercises
 
 # A tuple of 2-tuples
 # TYPE = (
@@ -39,12 +40,10 @@ class WorkoutCreate(CreateView):
     form.instance.user = self.request.user  # form.instance is the cat
     # Let the CreateView do its job as usual
     return super().form_valid(form)
-
 class WorkoutUpdate(UpdateView):
   model = Workout
   # Let's disallow the renaming of a cat by excluding the name field!
   fields = ['workout_type', 'description']
-
 class WorkoutDelete(DeleteView):
   model = Workout
   success_url = '/workouts/'
@@ -64,6 +63,17 @@ def workouts_detail(request, workout_id):
   return render(request, "workouts/detail.html")
   # def about(request):
   #   return render(request, 'about.html')
+
+
+# The purpose of this is to add a specific exercise 
+def add_exercise(request, workout_id, exercise_id):
+  Workout.objects.get(id=workout_id).exercises.add(exercise_id)
+  return redirect('detail', workout_id=workout_id)
+
+# The purpose of this is to remove a specific exercise 
+def remove_exercise(request, workout_id, exercise_id):
+  Workout.objects.get(id=workout_id).exercises.remove(exercise_id)
+  return redirect('detail', workout_id=workout_id)
 
 def signup(request):
   error_message = ''
@@ -85,4 +95,28 @@ def signup(request):
   return render(request, 'registration/signup.html', context)
 
 
+
+
+
+
+
+
+class ExerciseIndex(ListView):
+  model = Exercises
+
+class ExerciseDetail(DetailView):
+  model = Exercises
+
+class ExerciseCreate(CreateView):
+  model = Exercises
+  fields = '__all__'
+ 
+
+class ExerciseUpdate(UpdateView):
+  model = Exercises
+  fields = '__all__'
+
+class ExerciseDelete(DeleteView):
+  model = Exercises
+  success_url = '/exercises/'
 
