@@ -1,6 +1,7 @@
 
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
+from django.views.generic.edit import CreateView
 # register/signin form
 from django.contrib.auth.forms import UserCreationForm
 
@@ -27,6 +28,10 @@ from .models import Workout
 #   Workout('S', 'My goal is to add 10lbs to my lift'),
 # ]
 
+class WorkoutCreate(CreateView):
+  model = Workout
+  fields = '__all__'
+  success_url = '/workouts/'
 
 
 def index(request):
