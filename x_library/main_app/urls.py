@@ -4,6 +4,7 @@ from . import views
 urlpatterns = [
    path('', views.index, name='home'),
    path('workouts/', views.workouts_index, name='index'),
+   path('workouts/<int:workout_id>/', views.workouts_detail, name='detail'),
    # createView
    path('workouts/create/', views.WorkoutCreate.as_view(), name='workouts_create'),
    # updateView
