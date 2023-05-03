@@ -1,7 +1,7 @@
 
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 # register/signin form
 from django.contrib.auth.forms import UserCreationForm
 
@@ -31,6 +31,15 @@ from .models import Workout
 class WorkoutCreate(CreateView):
   model = Workout
   fields = '__all__'
+  success_url = '/workouts/'
+
+class WorkoutUpdate(UpdateView):
+  model = Workout
+  # Let's disallow the renaming of a cat by excluding the name field!
+  fields = '__all__'
+
+class WorkoutDelete(DeleteView):
+  model = Workout
   success_url = '/workouts/'
 
 
