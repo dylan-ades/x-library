@@ -24,7 +24,27 @@ class Workout(models.Model):
     
     def get_absolute_url(self):
         return reverse('detail', kwargs={'workout_id': self.id})
+
+
+class Tracking(models.Model):
+    TRACK = (
+    ('C', 'Cardio'),
+    ('S', 'Strength'),
+    ('Y', 'Yoga')
+)
+
     
+    date = models.DateField('workout date')
+    track = models.CharField(max_length=5, choices=TRACK, default=TRACK[0][0],)
+    
+    workout = models.ForeignKey(Workout, on_delete=models.CASCADE)
+
+def __str__(self):
+        return f"{self.get_track_display()} on {self.date}"
+
+class Meta:
+        ordering = ('-date',)
+
 class Exercises(models.Model):
      name = models.CharField(max_length=100)
      sets = models.IntegerField()
