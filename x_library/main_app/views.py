@@ -4,11 +4,13 @@ from django.contrib.auth import login
 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
+from .models import Workout, Exercises
+from .forms import TrackingForm
 # register/signin form
 from django.contrib.auth.forms import UserCreationForm
 
 
-from .models import Workout, Exercises
+
 
 # A tuple of 2-tuples
 # TYPE = (
@@ -69,7 +71,16 @@ def workouts_detail(request, workout_id):
       # 'exercises': exercises_workout_doesnt_have
     })
 
-
+def add_tracking(request, workout_id):
+  form = TrackingForm(request.POST)
+  # validate the form
+  if form.is_valid():
+    # don't save the form to the db until it
+    # has the cat_id assigned
+    new_tracking = form.save(commit=False)
+    new_tracking.workout_id = workout_id
+    new_tracking.save()
+  return redirect('detail', workout_id=workout_id)
 # The purpose of this is to add a specific exercise 
 def add_exercise(request, workout_id, exercise_id):
   Workout.objects.get(id=workout_id).exercises.add(exercise_id)
