@@ -25,13 +25,16 @@
           <ul class="right">
             <li><a href="{% url 'home' %}">About</a></li>
             <!-- <li><a href="/about">About</a></li> -->
-            <li><a href="{% url 'workouts_create' %}">Add a Workout</a></li>
+          
             {% if user.is_authenticated %}
-            
+           
             <li><a href="{% url 'index' %}">View All My Workouts</a></li>
             <!-- <li><a href="/workouts">View All My Workouts</a></li> -->
             <li><a href="{% url 'logout' %}">Log Out</a></li>
+            <li><a href="{% url 'exercises_create' %}">Add Exercise</a></li>
+            <li><a href="{% url 'exercises_index' %}">View All Exercises</a></li>
             {% else %}
+            
             <li><a href="{% url 'login' %}">Log In</a></li> 
             <li><a href="{% url 'signup' %}">Sign Up</a></li>
             {% endif %}

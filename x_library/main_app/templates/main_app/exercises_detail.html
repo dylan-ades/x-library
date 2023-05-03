@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Exercise Details</h1>
+
+<div class="card">
+    <a href="{% url 'exercises_detail' exercise.id %}">
+       
+            <span class="card-title">
+                <span> {{ exercise.name }}, {{ exercise.workout_type.capitalize }}</span>
+                    <p>Sets:{{exercise.sets}} Reps:{{ exercise.reps }}</p>
+                    <p>yoga_flow:{{exercise.yoga_flow}} distance:{{ exercise.distance }}</p>
+        </div>
+    </a>
+    <div class="card-action">
+        <a href="{% url 'exercises_update' exercise.id %}">Edit</a>
+        <a href="{% url 'exercises_delete' exercise.id %}">Delete</a>
+    </div>
+</div>
+
+{% endblock %}
