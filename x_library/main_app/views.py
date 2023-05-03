@@ -40,10 +40,12 @@ class WorkoutCreate(CreateView):
     form.instance.user = self.request.user  # form.instance is the cat
     # Let the CreateView do its job as usual
     return super().form_valid(form)
+  
 class WorkoutUpdate(UpdateView):
   model = Workout
   # Let's disallow the renaming of a cat by excluding the name field!
   fields = ['workout_type', 'description']
+  
 class WorkoutDelete(DeleteView):
   model = Workout
   success_url = '/workouts/'
@@ -58,11 +60,14 @@ def workouts_index(request):
   return render(request, 'workouts/index.html', { 'workouts': workouts })
 
 def workouts_detail(request, workout_id):
-  Workout = Workout.objects.get(id=workout_id)
+  workout = Workout.objects.get(id=workout_id)
   # instantiate FeedingForm to be rendered in the template
-  return render(request, "workouts/detail.html")
-  # def about(request):
-  #   return render(request, 'about.html')
+  # exercises_workout_doesnt_have = Exercises.objects.exclude(id__in = workout.exercises.all().values_list('id'))
+  # workout.exercises.all().values_list('id')
+  return render(request, 'workouts/detail.html', { 
+      'workout': workout, 
+      # 'exercises': exercises_workout_doesnt_have
+    })
 
 
 # The purpose of this is to add a specific exercise 

@@ -8,8 +8,10 @@
     <p>Description: {{ workout.description }}</p>
    </div>
    <div class="card-action">
-    <a href="{% url ‘workouts_update' workout.id %}">Edit</a>
-    <a href="{% url ‘workouts_delete' workout.id %}">Delete</a>
+    <a href="{% url 'workouts_update' workout.id %}">Edit</a>
+    <a href="{% url 'workouts_delete' workout.id %}">Delete</a>
    </div>
   </div>
  </div>
+
+ {% endblock %}
