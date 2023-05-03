@@ -30,9 +30,9 @@
             <li><a href="{% url 'workouts_create' %}">Add a Workout</a></li>
             <li><a href="{% url 'index' %}">View All My Workouts</a></li>
 
-            <li><a href="{% url 'logout' %}">Log Out</a></li>
             <li><a href="{% url 'exercises_create' %}">Add Exercise</a></li>
             <li><a href="{% url 'exercises_index' %}">View All Exercises</a></li>
+            <li><a href="{% url 'logout' %}">Log Out</a></li>
             {% else %}
             
             <li><a href="{% url 'login' %}">Log In</a></li> 
