@@ -25,6 +25,8 @@
           <ul class="right">
             <li><a href="/about">About</a></li>
             <li><a href="/workouts">View All My Workouts</a></li>
+            <a href="{% url 'exercises_create' %}">Add Exercise</a>
+            <a href="{% url 'exercises_index' %}">View All Exercises</a>
             <li><a href="{% url 'login' %}">Log In</a></li> 
             <li><a href="{% url 'signup' %}">Sign Up</a></li>
           </ul>

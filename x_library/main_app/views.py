@@ -1,6 +1,8 @@
 
 from django.shortcuts import render
 from django.contrib.auth import login
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView
 # register/signin form
 from django.contrib.auth.forms import UserCreationForm
 
@@ -76,22 +78,22 @@ def signup(request):
 
 
 
-class ExerciseIndex(LoginRequiredMixin, ListView):
+class ExerciseIndex(ListView):
   model = Exercise
 
-class ExerciseDetail(LoginRequiredMixin, DetailView):
+class ExerciseDetail(DetailView):
   model = Exercise
 
-class ExerciseCreate(LoginRequiredMixin, CreateView):
+class ExerciseCreate( CreateView):
   model = Exercise
   fields = '__all__'
   success_url = '/exercises/'
 
-class ExerciseUpdate(LoginRequiredMixin, UpdateView):
+class ExerciseUpdate(UpdateView):
   model = Exercise
   fields = '__all__'
 
-class ExerciseDelete(LoginRequiredMixin, DeleteView):
+class ExerciseDelete( DeleteView):
   model = Exercise
   success_url = '/exercises/'
 
