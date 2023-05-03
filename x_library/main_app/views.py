@@ -1,7 +1,8 @@
 
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic import ListView, DetailView
 # register/signin form
 from django.contrib.auth.forms import UserCreationForm
 
@@ -31,7 +32,17 @@ from .models import Workout
 class WorkoutCreate(CreateView):
   model = Workout
   fields = '__all__'
-  success_url = '/workouts/'
+  # success_url = '/workouts/'
+  def form_valid(self, form):
+    # Assign the logged in user (self.request.user)
+    form.instance.user = self.request.user  # form.instance is the cat
+    # Let the CreateView do its job as usual
+    return super().form_valid(form)
+
+class WorkoutUpdate(UpdateView):
+  model = Workout
+  # Let's disallow the renaming of a cat by excluding the name field!
+  fields = '__all__'
 
 
 def index(request):
