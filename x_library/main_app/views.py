@@ -58,11 +58,14 @@ def workouts_index(request):
   return render(request, 'workouts/index.html', { 'workouts': workouts })
 
 def workouts_detail(request, workout_id):
-  Workout = Workout.objects.get(id=workout_id)
+  workout = Workout.objects.get(id=workout_id)
   # instantiate FeedingForm to be rendered in the template
-  return render(request, "workouts/detail.html")
-  # def about(request):
-  #   return render(request, 'about.html')
+  exercises_workout_doesnt_have = Exercises.objects.exclude(id__in = workout.exercises.all().values_list('id'))
+  workout.exercises.all().values_list('id')
+  return render(request, 'workouts/detail.html', { 
+      'workout': workout, 
+      'exercises': exercises_workout_doesnt_have
+    })
 
 
 # The purpose of this is to add a specific exercise 
