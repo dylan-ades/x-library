@@ -1,6 +1,8 @@
 
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.http import HttpResponse
 # register/signin form
 from django.contrib.auth.forms import UserCreationForm
 
@@ -27,6 +29,25 @@ from .models import Workout
 #   Workout('S', 'My goal is to add 10lbs to my lift'),
 # ]
 
+class WorkoutCreate(CreateView):
+  model = Workout
+  fields = ['workout_type', 'description']
+  success_url = '/workouts/'
+  def form_valid(self, form):
+    print('is valid')
+    # Assign the logged in user (self.request.user)
+    form.instance.user = self.request.user  # form.instance is the cat
+    # Let the CreateView do its job as usual
+    return super().form_valid(form)
+
+class WorkoutUpdate(UpdateView):
+  model = Workout
+  # Let's disallow the renaming of a cat by excluding the name field!
+  fields = ['workout_type', 'description']
+
+class WorkoutDelete(DeleteView):
+  model = Workout
+  success_url = '/workouts/'
 
 
 def index(request):
@@ -37,8 +58,12 @@ def workouts_index(request):
   # workouts = Workout.objects.all()
   return render(request, 'workouts/index.html', { 'workouts': workouts })
 
-# def about(request):
-#   return render(request, 'about.html')
+def workouts_detail(request, workout_id):
+  Workout = Workout.objects.get(id=workout_id)
+  # instantiate FeedingForm to be rendered in the template
+  return render(request, "workouts/detail.html")
+  # def about(request):
+  #   return render(request, 'about.html')
 
 def signup(request):
   error_message = ''
