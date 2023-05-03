@@ -71,3 +71,27 @@ def signup(request):
 
 
 
+
+
+
+
+
+class ExerciseIndex(LoginRequiredMixin, ListView):
+  model = Exercise
+
+class ExerciseDetail(LoginRequiredMixin, DetailView):
+  model = Exercise
+
+class ExerciseCreate(LoginRequiredMixin, CreateView):
+  model = Exercise
+  fields = '__all__'
+  success_url = '/exercises/'
+
+class ExerciseUpdate(LoginRequiredMixin, UpdateView):
+  model = Exercise
+  fields = '__all__'
+
+class ExerciseDelete(LoginRequiredMixin, DeleteView):
+  model = Exercise
+  success_url = '/exercises/'
+
