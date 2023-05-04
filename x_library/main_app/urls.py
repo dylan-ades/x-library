@@ -13,6 +13,7 @@ urlpatterns = [
    path('workouts/<int:pk>/delete/', views.WorkoutDelete.as_view(), name='workouts_delete'),
     path('workouts/<int:workout_id>/add_tracking/', views.add_tracking, name='add_tracking'),
      path('workouts/<int:workout_id>/assoc_exercise/<int:exercise_id>/', views.assoc_exercise, name='assoc_exercise'),
+     path('workouts/<int:workout_id>/remove_exercise/<int:exercise_id>/', views.remove_exercise, name='remove_exercise'),
    # signup
    path('accounts/signup/', views.signup, name='signup'),
    # 

@@ -4,12 +4,12 @@ from datetime import date
 # Import the User
 from django.contrib.auth.models import User
 
-# A tuple of 2-tuples
-# TYPE = (
-#     ('C', 'Cardio'),
-#     ('Y', 'Yoga'),
-#     ('S', 'Strength')
-# )
+TRACK = (
+    ('C', 'Cardio'),
+    ('S', 'Strength'),
+    ('Y', 'Yoga')
+)
+
 class Exercises(models.Model):
      name = models.CharField(max_length=100)
      sets = models.IntegerField()
@@ -42,21 +42,14 @@ class Workout(models.Model):
 
 
 class Tracking(models.Model):
-    TRACK = (
-    ('C', 'Cardio'),
-    ('S', 'Strength'),
-    ('Y', 'Yoga')
-)
-
-    
     date = models.DateField('workout date')
     track = models.CharField(max_length=5, choices=TRACK, default=TRACK[0][0],)
     
     workout = models.ForeignKey(Workout, on_delete=models.CASCADE)
 
-def __str__(self):
+    def __str__(self):
         return f"{self.get_track_display()} on {self.date}"
 
-class Meta:
+    class Meta:
         ordering = ('-date',)
 

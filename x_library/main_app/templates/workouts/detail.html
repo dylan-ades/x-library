@@ -13,8 +13,32 @@
    </div>
   </div>
  </div>
+ <div class="col s6">
+    <form action="{% url 'add_tracking' workout.id %}" method="post">
+      {% csrf_token %} {{ tracking_form.as_p }}
+      <input type="submit" class="btn" value="Add Tracking" />
+    </form>
+    <table class="striped">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Track</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for tracking in workout.tracking_set.all %}
+        <tr>
+          <td>{{tracking.date}}</td>
+          <td>{{tracking.get_track_display}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+<hr />
 <div class="row">
-    <div class="col s6">
+<div class="col s6">
       <h3>{{ workout.workout_type }} contains...</h3>
       {% if workout.exercises.count %}
         {% for exercise in workout.exercises.all %}
@@ -45,7 +69,7 @@
               </span>
           </div>
           <div class="card-action">
-            <form action="{% url 'assoc_toy' cat.id toy.id %}" method="post">
+            <form action="{% url 'assoc_exercise' workout.id exercise.id %}" method="post">
               {% csrf_token %}
               <button type="submit" class="btn">Add</button>
             </form>
@@ -67,7 +91,7 @@
     autoClose: true
   });
 
-  let selectEl = document.getElementById('id_meal');
+  let selectEl = document.getElementById('id_track');
   M.FormSelect.init(selectEl);
 </script>
  {% endblock %}
