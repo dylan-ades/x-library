@@ -11,6 +11,9 @@ from django.contrib.auth.models import User
 #     ('S', 'Strength')
 # )
 
+
+
+
 class Workout(models.Model):
     workout_type = models.TextField(max_length=150, default='Workout')
     description = models.TextField(max_length=250)
