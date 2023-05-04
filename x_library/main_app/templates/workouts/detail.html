@@ -42,8 +42,8 @@
       <h3>{{ workout.workout_type }} contains...</h3>
       {% if workout.exercises.count %}
         {% for exercise in workout.exercises.all %}
-        <div class="card lime lighten-2">
-          <div class="card-content grey darken-3">
+        <div class="card">
+          <div class="card-content grey">
             <span class="card-title">
               <span class="{{ exercise.sets.lower }}-text">{{ exercise.sets }}</span> {{ exercise.name }}
               <form action="{% url 'remove_exercise' workout.id exercise.id %}" method="POST">
@@ -62,8 +62,8 @@
       <h3>Available Exercises</h3>
       {% if exercises.count %}
         {% for exercise in exercises %}
-        <div class="card lime lighten-2">
-          <div class="card-content grey darken-3">
+        <div class="card ">
+          <div class="card-content">
               <span class="card-title">
                 <span>{{ exercise.name }}</span>
               </span>
