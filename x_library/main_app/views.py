@@ -32,7 +32,7 @@ from .forms import TrackingForm
 #   Workout('Y', 'May Goal is to loosen my back'),
 #   Workout('S', 'My goal is to add 10lbs to my lift'),
 # ]
-@login_required
+
 class WorkoutCreate(LoginRequiredMixin, CreateView):
   model = Workout
   fields = ['workout_type', 'description']
@@ -44,13 +44,13 @@ class WorkoutCreate(LoginRequiredMixin, CreateView):
     # Let the CreateView do its job as usual
     return super().form_valid(form)
   
-@login_required
+
 class WorkoutUpdate(LoginRequiredMixin, UpdateView):
   model = Workout
   # Let's disallow the renaming of a cat by excluding the name field!
   fields = ['workout_type', 'description']
   
-@login_required
+
 class WorkoutDelete(LoginRequiredMixin, DeleteView):
   model = Workout
   success_url = '/workouts/'
