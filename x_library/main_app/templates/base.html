@@ -19,8 +19,12 @@
         <div class="nav-wrapper">
           <ul>
             <li>
+            {% if user.is_authenticated %}
+            <li id="username">  {{ user.username }} 's</li>
+            {% endif %}
               <a href="/" class="left brand-logo">&nbsp;&nbsp;X-Library</a>
             </li>
+            
           </ul>
           <ul class="right">
             <li><a href="{% url 'home' %}">About</a></li>

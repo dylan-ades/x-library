@@ -54,7 +54,7 @@ class WorkoutDelete(DeleteView):
 
 
 def index(request):
-  return render(request, 'main_app/index.html')
+  return render(request, 'index.html')
 
 def workouts_index(request):
   workouts = Workout.objects.filter(user=request.user)
@@ -110,7 +110,8 @@ def signup(request):
       user = form.save()
       # This is how we log a user in via code
       login(request, user)
-      return redirect('index')
+      return redirect('home')
+      
     else:
       error_message = 'Invalid sign up - try again'
   # A bad POST or a GET request, so render signup.html with an empty form

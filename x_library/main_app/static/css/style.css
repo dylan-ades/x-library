@@ -1,14 +1,40 @@
+
+
 body {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-  }
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  background: linear-gradient(90deg, rgb(145, 145, 145) 0%, 
+  rgb(196, 193, 196) 35%, rgb(248, 243, 248) 100%);
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+footer {
+  padding-top: 0;
+  text-align: right;
   
-  main {
-    flex: 1 0 auto;
-  }
+}
+
+.nav-wrapper, .page-footer {
+  background-color: rgb(211, 189, 60);
+}
+
+#username {
   
-  footer {
-    padding-top: 0;
-    text-align: right;
-  }
+  padding: 0 0 0 20px;
+  font-size: 30px;
+  font-weight: bold;
+  font-family:'Times New Roman', Times, serif;
+  
+}
+/* .logo {
+  font-size: 15px;
+  font-weight: bold;
+
+} */
+img{
+  padding: 0 0 0 100px;
+}
