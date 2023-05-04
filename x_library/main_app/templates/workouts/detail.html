@@ -13,5 +13,61 @@
    </div>
   </div>
  </div>
+<div class="row">
+    <div class="col s6">
+      <h3>{{ workout.workout_type }} contains...</h3>
+      {% if workout.exercises.count %}
+        {% for exercise in workout.exercises.all %}
+        <div class="card lime lighten-2">
+          <div class="card-content grey darken-3">
+            <span class="card-title">
+              <span class="{{ exercise.sets.lower }}-text">{{ exercise.sets }}</span> {{ exercise.name }}
+              <form action="{% url 'remove_exercise' workout.id exercise.id %}" method="POST">
+                {% csrf_token %}
+                <input type="submit" value="Remove" class="btn">
+              </form>
+            </span>
+          </div>
+        </div>
+        {% endfor %}
+      {% else %}
+          <h5>{{ workout.workout_type }} doesn't have associated exercises yet!</h5>
+      {% endif %}
+    </div>
+    <div class="col s6">
+      <h3>Available Exercises</h3>
+      {% if exercises.count %}
+        {% for exercise in exercises %}
+        <div class="card lime lighten-2">
+          <div class="card-content grey darken-3">
+              <span class="card-title">
+                <span>{{ exercise.name }}</span>
+              </span>
+          </div>
+          <div class="card-action">
+            <form action="{% url 'assoc_toy' cat.id toy.id %}" method="post">
+              {% csrf_token %}
+              <button type="submit" class="btn">Add</button>
+            </form>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <h5>{{workout.workout_type}} Already Has All  Available</h5>
+     
+    {% endif %}
+  </div>
 
+<script>
+  let dateEl = document.getElementById('id_date');
+  M.Datepicker.init(dateEl, {
+    format: 'yyyy-mm-dd',
+    defaultDate: new Date(),
+    setDefaultDate: true,
+    autoClose: true
+  });
+
+  let selectEl = document.getElementById('id_meal');
+  M.FormSelect.init(selectEl);
+</script>
  {% endblock %}

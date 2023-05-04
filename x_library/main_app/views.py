@@ -64,11 +64,13 @@ def workouts_index(request):
 def workouts_detail(request, workout_id):
   workout = Workout.objects.get(id=workout_id)
   # instantiate FeedingForm to be rendered in the template
-  # exercises_workout_doesnt_have = Exercises.objects.exclude(id__in = workout.exercises.all().values_list('id'))
+  exercises_workout_doesnt_have = Exercises.objects.exclude(id__in = workout.exercises.all().values_list('id'))
   # workout.exercises.all().values_list('id')
+  tracking_form = TrackingForm()
   return render(request, 'workouts/detail.html', { 
       'workout': workout, 
-      # 'exercises': exercises_workout_doesnt_have
+      'tracking_form' : tracking_form , 
+      'exercises': exercises_workout_doesnt_have
     })
 
 def add_tracking(request, workout_id):
@@ -81,6 +83,12 @@ def add_tracking(request, workout_id):
     new_tracking.workout_id = workout_id
     new_tracking.save()
   return redirect('detail', workout_id=workout_id)
+
+def assoc_exercise(request, workout_id, exercise_id):
+  # Note that you can pass a toy's id instead of the whole object
+  Workout.objects.get(id=workout_id).exercises.add(exercise_id)
+  return redirect('detail', workout_id=workout_id)
+
 # The purpose of this is to add a specific exercise 
 def add_exercise(request, workout_id, exercise_id):
   Workout.objects.get(id=workout_id).exercises.add(exercise_id)
