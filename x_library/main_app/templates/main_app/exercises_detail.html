@@ -8,14 +8,14 @@
     <a href="{% url 'exercises_detail' exercises.id %}">
        
             <span class="card-title">
-                <span> {{ exercises.name }}, {{ exercises.workout_type.capitalize }}</span>
+                <span class="exercise-name"> {{ exercises.name.capitalize }} {{ exercises.workout_type.capitalize }}</span>
                     <p>Sets:{{exercises.sets}} </p>
                     <p>reps:{{ exercises.reps }}</p>
                     <p>yoga flow:{{exercises.yoga_flow}}</p> 
                     <p>distance:{{ exercises.distance }}</p>
         </div>
     </a>
-    <div class="card-action">
+    <div id="btn-exercise" class="card-action">
         <a href="{% url 'exercises_update' exercises.id %}">Edit</a>
         <a href="{% url 'exercises_delete' exercises.id %}">Delete</a>
     </div>
