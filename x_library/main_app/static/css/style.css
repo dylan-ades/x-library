@@ -80,3 +80,13 @@ img{
   color: orangered;
 
 }
+
+.X{
+  font-size: 35px;
+  color: #a34e09;
+  text-align: center;
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  -moz-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
