@@ -1,4 +1,7 @@
 
+* {
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
 
 body {
   display: flex;
@@ -14,7 +17,7 @@ main {
 
 footer {
   padding-top: 0;
-  text-align: right;
+  .text-align: right;
   
 }
 
@@ -24,17 +27,20 @@ footer {
 
 #username {
   
-  padding: 0 0 0 20px;
+  padding: 0 0 0 10px;
   font-size: 30px;
   font-weight: bold;
   font-family:'Times New Roman', Times, serif;
   
 }
 /* .logo {
-  font-size: 15px;
-  font-weight: bold;
+  padding:
 
 } */
 img{
   padding: 0 0 0 100px;
+}
+
+.btn {
+  background-color: rgb(93, 93, 46);
 }
