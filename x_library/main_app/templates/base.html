@@ -27,8 +27,8 @@
             <!-- <li><a href="/about">About</a></li> -->
             
             {% if user.is_authenticated %}
-            <li><a href="{% url 'workouts_create' %}">Add a Workout</a></li>
-            <li><a href="{% url 'index' %}">View All My Workouts</a></li>
+            <li><a href="{% url 'workouts_create' %}">Start a Workout</a></li>
+            <li><a href="{% url 'index' %}">View Previous Workouts</a></li>
 
             <li><a href="{% url 'exercises_create' %}">Add Exercise</a></li>
             <li><a href="{% url 'exercises_index' %}">View All Exercises</a></li>
