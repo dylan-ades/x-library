@@ -4,12 +4,13 @@ from django.contrib.auth import login
 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
-from .models import Workout, Exercises
-from .forms import TrackingForm
 # register/signin form
 from django.contrib.auth.forms import UserCreationForm
-
-
+from django.contrib.auth.decorators import login_required
+#Import the mixin for class-based views
+from django.contrib.auth.mixins import LoginRequiredMixin
+from .models import Workout, Exercises
+from .forms import TrackingForm
 
 
 # A tuple of 2-tuples
@@ -32,7 +33,7 @@ from django.contrib.auth.forms import UserCreationForm
 #   Workout('S', 'My goal is to add 10lbs to my lift'),
 # ]
 
-class WorkoutCreate(CreateView):
+class WorkoutCreate(LoginRequiredMixin, CreateView):
   model = Workout
   fields = ['workout_type', 'description']
   success_url = '/workouts/'
@@ -43,12 +44,14 @@ class WorkoutCreate(CreateView):
     # Let the CreateView do its job as usual
     return super().form_valid(form)
   
-class WorkoutUpdate(UpdateView):
+
+class WorkoutUpdate(LoginRequiredMixin, UpdateView):
   model = Workout
   # Let's disallow the renaming of a cat by excluding the name field!
   fields = ['workout_type', 'description']
   
-class WorkoutDelete(DeleteView):
+
+class WorkoutDelete(LoginRequiredMixin, DeleteView):
   model = Workout
   success_url = '/workouts/'
 
@@ -56,11 +59,13 @@ class WorkoutDelete(DeleteView):
 def index(request):
   return render(request, 'main_app/index.html')
 
+@login_required
 def workouts_index(request):
   workouts = Workout.objects.filter(user=request.user)
   # workouts = Workout.objects.all()
   return render(request, 'workouts/index.html', { 'workouts': workouts })
 
+@login_required
 def workouts_detail(request, workout_id):
   workout = Workout.objects.get(id=workout_id)
   # instantiate FeedingForm to be rendered in the template
@@ -73,6 +78,7 @@ def workouts_detail(request, workout_id):
       'exercises': exercises_workout_doesnt_have
     })
 
+@login_required
 def add_tracking(request, workout_id):
   form = TrackingForm(request.POST)
   # validate the form
@@ -84,10 +90,12 @@ def add_tracking(request, workout_id):
     new_tracking.save()
   return redirect('detail', workout_id=workout_id)
 
+@login_required
 def assoc_exercise(request, workout_id, exercise_id):
   # Note that you can pass a toy's id instead of the whole object
   Workout.objects.get(id=workout_id).exercises.add(exercise_id)
   return redirect('detail', workout_id=workout_id)
+
 
 # The purpose of this is to add a specific exercise 
 def add_exercise(request, workout_id, exercise_id):
@@ -119,28 +127,23 @@ def signup(request):
   return render(request, 'registration/signup.html', context)
 
 
-
-
-
-
-
-
-class ExerciseIndex(ListView):
+class ExerciseIndex(LoginRequiredMixin, ListView):
   model = Exercises
 
-class ExerciseDetail(DetailView):
+
+class ExerciseDetail(LoginRequiredMixin, DetailView):
   model = Exercises
 
-class ExerciseCreate(CreateView):
-  model = Exercises
-  fields = '__all__'
- 
 
-class ExerciseUpdate(UpdateView):
+class ExerciseCreate(LoginRequiredMixin, CreateView):
   model = Exercises
   fields = '__all__'
 
-class ExerciseDelete(DeleteView):
+class ExerciseUpdate(LoginRequiredMixin, UpdateView):
+  model = Exercises
+  fields = '__all__'
+
+class ExerciseDelete(LoginRequiredMixin, DeleteView):
   model = Exercises
   success_url = '/exercises/'
 

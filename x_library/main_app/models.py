@@ -28,7 +28,7 @@ class Exercises(models.Model):
 
 
 class Workout(models.Model):
-    workout_type = models.TextField(max_length=150, default='Workout')
+    workout_type = models.CharField(max_length=150, default='Workout')
     description = models.TextField(max_length=250)
     # Add the foreign key linking to a user instance
     exercises = models.ManyToManyField(Exercises)
