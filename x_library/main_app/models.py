@@ -24,6 +24,9 @@ class Exercises(models.Model):
         return reverse('exercises_detail', kwargs={'pk': self.id})
 
 
+
+
+
 class Workout(models.Model):
     workout_type = models.TextField(max_length=150, default='Workout')
     description = models.TextField(max_length=250)
