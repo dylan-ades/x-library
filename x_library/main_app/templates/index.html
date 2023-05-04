@@ -1,0 +1,14 @@
+{% extends 'base.html' %} {% block content %}
+
+
+<h4 class="welcome">  {% if user.is_authenticated %} Welcome, 
+      {{ user.username }} 
+    {% endif %} </h4>
+
+    <h5>"Get Fit, Track Progress, Reach Goals - with X-Library!"</h5>
+    <br>
+    <hr />
+     
+
+     <img src="https://images.unsplash.com/photo-1616279967983-ec413476e824?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=500" >
+{% endblock %}

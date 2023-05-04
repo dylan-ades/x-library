@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Exercises to choose from</h1>
+
+{% for exercise in object_list %}
+<div class="card">
+  <a href="{% url 'exercises_detail' exercise.id %}" >
+    <div class="card-content">
+    <span class="card-title"> <span class="{{exercise.workout_type.lower}}-text">{{ exercise.workout_type.capitalize }}
+      <span> {{ exercise.name }} </span>
+  </div>
+  </a>
+</div>
+
+{% endfor %} 
+
+{% endblock %}

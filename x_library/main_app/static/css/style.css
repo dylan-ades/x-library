@@ -1,0 +1,92 @@
+
+* {
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  background: linear-gradient(90deg, rgb(253, 252, 252) 0%, 
+  rgb(196, 193, 196) 35%, rgb(218, 214, 218) 100%);
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+footer {
+  padding-top: 0;
+  text-align: right;
+  
+}
+
+.nav-wrapper, .page-footer {
+  background-color: rgb(209, 168, 36);
+  color: rgb(246, 246, 246)
+}
+
+#username {
+  
+  padding: 0 0 0 20px;
+  font-size: 30px;
+  font-weight: bold;
+  font-family:'Times New Roman', Times, serif;
+  
+  
+}
+.left brand-logo {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
+
+}
+img{
+  padding: 0 0 0 100px;
+}
+
+.btn {
+  background-color: rgb(93, 93, 46);
+}
+
+.card-content {
+  color: rgb(150, 112, 112);
+}
+
+
+.card-action {
+  color: orange;
+}
+
+.card {
+  border-style:ridge;
+  border-color: rgb(67, 60, 60);
+  opacity: 0.8px;
+}
+
+.welcome {
+  padding: 20px 0 0 0;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-weight:200;
+  color: rgb(72, 69, 69);
+}
+.card-title {
+  color:rgb(150, 112, 112)
+}
+.exercise-name {
+  font-weight:900;
+  text-align: center;
+}
+
+#btn-exercise {
+  color: orangered;
+
+}
+
+.X{
+  font-size: 35px;
+  color: #a34e09;
+  text-align: center;
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  -moz-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
