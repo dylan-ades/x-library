@@ -18,7 +18,7 @@ A web app that lets you log workouts, record your recent progress, and intuitive
 
 
 # Getting Started
-Click [here](link coming soon) to try out X-Library.
+Click [here](https://x-library.herokuapp.com/) to try out X-Library.
 
 # Future Enchancements
 - Profile functionality
